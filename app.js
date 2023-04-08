@@ -166,6 +166,22 @@ function startConsultancy() {
         let option = document.createElement("option");
         let textarea = document.createElement("textarea");
 
+        if(question?.question_type === "text"){
+
+        }
+
+        if(question?.question_type === "yes"){
+
+        }
+        else if(question?.question_type === "no"){
+
+        }
+        else if(question?.question_type === "yes-no"){
+
+        }
+        else if(question?.question_type === "multiple-selection"){
+
+        }
         //add inner html to the elements
         span.innerHTML = `${question?.question_text}`;
         label.innerHTML = `Question type: ${question?.question_type}`;
@@ -181,6 +197,7 @@ function startConsultancy() {
         label.setAttribute("for", question?.question_id);
         input.setAttribute("name", question?.question_id);
         input.setAttribute("type", "text");
+        input.setAttribute("type", "radio");
         input.setAttribute("type", "checkbox");
         input.setAttribute(
           "placeholder",
