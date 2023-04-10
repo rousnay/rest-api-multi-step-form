@@ -210,6 +210,16 @@ function startConsultancy() {
             <input class="radio-item" type="radio" id="no-${question?.question_id}" name="${question?.question_id}" value="No">
             <label class="radio-item" for="no-${question?.question_id}">No</label>`
           );
+
+          section.insertAdjacentHTML(
+            "beforeend",
+            `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+          <button type="button" data-action="next">
+            Continue
+          </button>
+        </div>`
+          );
+
           divWrapper.appendChild(labelMain);
           divWrapper.appendChild(divButtons);
           section.appendChild(divWrapper);
@@ -233,13 +243,22 @@ function startConsultancy() {
             input.setAttribute("type", "checkbox");
             input.setAttribute("name", `${option}`);
             input.setAttribute("value", `${option}`);
-
             //append child elements to the parents
             label.appendChild(input);
             label.appendChild(span);
             fieldset.appendChild(legend);
             fieldset.appendChild(label);
           });
+
+          section.insertAdjacentHTML(
+            "beforeend",
+            `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+          <button type="button" data-action="next">
+            Continue
+          </button>
+        </div>`
+          );
+
           section.appendChild(fieldset);
           tipForm.appendChild(section);
         } else if (question?.question_type === "text") {
@@ -247,6 +266,22 @@ function startConsultancy() {
         } else {
           console.log("Something went wrong with Consultancy");
         }
+
+        let submitSec = `<section class="pop-in" id="progress-form__panel-3" role="tabpanel" aria-labelledby="progress-form__tab-3" tabindex="0" hidden>
+        <div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+          <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
+            Back
+          </button>
+          <button type="submit">
+            Submit
+          </button>
+        </div>
+      </section>`;
+
+        let tankSec = `<section id="progress-form__thank-you" hidden>
+      <p>Thank you for your submission!</p>
+      <p>We appreciate you contacting us. One of our team members will get back to you very&nbsp;soon.</p>
+    </section>`;
       });
     } else {
       console.log("Something went wrong with TIP API");
