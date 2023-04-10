@@ -163,7 +163,7 @@ function startConsultancy() {
         section.setAttribute("id", `progress-form__panel-${i + 1}`);
         section.setAttribute("role", "tabpanel");
         section.setAttribute("aria-labelledby", `progress-form__tab-${i + 1}`);
-        section.setAttribute("tabindex", i);
+        section.setAttribute("tabindex", 0);
 
         if (i !== 0) {
           section.hidden = true;
@@ -196,13 +196,13 @@ function startConsultancy() {
           divButtons.classList.add("radio-buttons");
           legend.insertAdjacentHTML(
             "afterbegin",
-            '<span data-required="true" aria-hidden="true"></span>'
+            '<span class="required-mark" data-required="true" aria-hidden="true"></span>'
           );
 
           divButtons.insertAdjacentHTML(
             "beforeend",
             `<label class="form__choice-wrapper">
-            <input type="radio" name="${question?.question_id}" value="1">
+            <input type="radio" name="${question?.question_id}" value="1" required>
             <span>Yes</span>
           </label>
           <label class="form__choice-wrapper">
@@ -223,6 +223,18 @@ function startConsultancy() {
               Continue
             </button>
           </div>`
+            );
+          } else if (i === questions.length - 1) {
+            section.insertAdjacentHTML(
+              "beforeend",
+              `<div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+                <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
+                  Back
+                </button>
+                <button type="submit">
+                  Submit
+                </button>
+              </div>`
             );
           } else {
             section.insertAdjacentHTML(
@@ -276,6 +288,18 @@ function startConsultancy() {
             </button>
           </div>`
             );
+          } else if (i === questions.length - 1) {
+            section.insertAdjacentHTML(
+              "beforeend",
+              `<div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+                <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
+                  Back
+                </button>
+                <button type="submit">
+                  Submit
+                </button>
+              </div>`
+            );
           } else {
             section.insertAdjacentHTML(
               "beforeend",
@@ -292,27 +316,20 @@ function startConsultancy() {
 
           tipForm.appendChild(section);
         } else if (question?.question_type === "text") {
+          console.log("API has Text field");
         } else if (question?.question_type === "textarea") {
+          console.log("API has Textarea field");
         } else {
-          console.log("Something went wrong with Consultancy");
+          console.log("No field matches");
         }
-
-        let submitSec = `<section class="pop-in" id="progress-form__panel-3" role="tabpanel" aria-labelledby="progress-form__tab-3" tabindex="0" hidden>
-        <div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
-          <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
-            Back
-          </button>
-          <button type="submit">
-            Submit
-          </button>
-        </div>
-      </section>`;
-
-        let tankSec = `<section id="progress-form__thank-you" hidden>
-      <p>Thank you for your submission!</p>
-      <p>We appreciate you contacting us. One of our team members will get back to you very&nbsp;soon.</p>
-    </section>`;
       });
+      tipForm.insertAdjacentHTML(
+        "beforeend",
+        `<section id="progress-form__thank-you" hidden>
+        <p>Thank you for your submission!</p>
+        <p>We appreciate you contacting us. One of our team members will get back to you very&nbsp;soon.</p>
+      </section>`
+      );
     } else {
       console.log("Something went wrong with TIP API");
       console.log(response);
