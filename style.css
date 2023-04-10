@@ -3311,10 +3311,21 @@ button:disabled {
 .radio-buttons label {
   margin-right: 20px;
 }
-
-label{
+label,legend{
   font-weight: normal;
 }
 label.radio-item{
   font-weight: 700;
+}
+button.button-next,
+button.button-prev
+ {
+  cursor: pointer;
+}
+.progress-form__tabs-item {
+  cursor: pointer;
+}
+.progress-form__tabs-item:hover span.d-block.step {
+    font-weight: 700;
+    color: #127fbf;
 }

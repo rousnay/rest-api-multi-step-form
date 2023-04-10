@@ -179,7 +179,6 @@ function startConsultancy() {
           <span class="d-block step" aria-hidden="true">Step ${
             i + 1
           } <span class="sm:d-none">of ${question.length}</span></span>
-          Details
           </button>`
         );
 
@@ -212,17 +211,33 @@ function startConsultancy() {
           </label>`
           );
 
-          section.insertAdjacentHTML(
-            "beforeend",
-            `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
-          <button type="button" data-action="next">
-            Continue
-          </button>
-        </div>`
-          );
           fieldset.appendChild(legend);
           fieldset.appendChild(divButtons);
           section.appendChild(fieldset);
+
+          if (i === 0) {
+            section.insertAdjacentHTML(
+              "beforeend",
+              `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+            <button class="button-next" type="button" data-action="next">
+              Continue
+            </button>
+          </div>`
+            );
+          } else {
+            section.insertAdjacentHTML(
+              "beforeend",
+              `<div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+              <button type="button" class="mt-1 sm:mt-0 button--simple button-prev" data-action="prev">
+                Back
+              </button>
+              <button class="button-next" type="button" data-action="next">
+              Continue
+            </button>
+          </div>`
+            );
+          }
+
           tipForm.appendChild(section);
         } else if (question?.question_type === "multiple-selection") {
           //create element and add inner html to that element
@@ -250,16 +265,31 @@ function startConsultancy() {
             fieldset.appendChild(label);
           });
 
-          section.insertAdjacentHTML(
-            "beforeend",
-            `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
-          <button type="button" data-action="next">
-            Continue
-          </button>
-        </div>`
-          );
-
           section.appendChild(fieldset);
+
+          if (i === 0) {
+            section.insertAdjacentHTML(
+              "beforeend",
+              `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+            <button class="next-button" type="button" data-action="next">
+              Continue
+            </button>
+          </div>`
+            );
+          } else {
+            section.insertAdjacentHTML(
+              "beforeend",
+              `<div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+              <button type="button" class="mt-1 sm:mt-0 button--simple button-prev" data-action="prev">
+                Back
+              </button>
+              <button class="button-next" type="button" data-action="next">
+              Continue
+            </button>
+          </div>`
+            );
+          }
+
           tipForm.appendChild(section);
         } else if (question?.question_type === "text") {
         } else if (question?.question_type === "textarea") {
