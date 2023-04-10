@@ -154,62 +154,77 @@ function startConsultancy() {
     if (questions) {
       console.log(questions);
       questions.map(function (question) {
-        //create element
         let section = document.createElement("section");
-        let div = document.createElement("div");
-        let fieldset = document.createElement("fieldset");
-        let label = document.createElement("label");
-        let span = document.createElement("span");
-        let legend = document.createElement("legend");
-        let input = document.createElement("input");
-        let select = document.createElement("select");
-        let option = document.createElement("option");
-        let textarea = document.createElement("textarea");
 
-        if(question?.question_type === "text"){
+        if (
+          question?.question_type === "yes" ||
+          question?.question_type === "no" ||
+          question?.question_type === "yes-no"
+        ) {
+          //create element
+          let divWrapper = document.createElement("div");
+          let divButtons = document.createElement("div");
+          let labelMain = document.createElement("label");
+          let labelButtons = document.createElement("label");
+          let input = document.createElement("input");
+
+          divWrapper.classList.add("mt-3", "form__field", "field_wrapper");
+          labelMain.innerHTML = `${question?.question_text}`;
+          divButtons.classList.add("radio-buttons");
+          labelButtons.classList.add("radio-item");
+          labelButtons.setAttribute("for", question?.question_id);
+          labelMain.insertAdjacentHTML(
+            "afterbegin",
+            '<span data-required="true" aria-hidden="true"></span>'
+          );
+          input.setAttribute("type", "radio");
+          input.classList.add("radio-item");
+
+          divButtons.insertAdjacentHTML(
+            "beforeend",
+            `<input class="radio-item" type="radio" id="yes-${question?.question_id}" name="${question?.question_id}" value="Yes">
+            <label class="radio-item" for="yes-${question?.question_id}">Yes</label>
+            <input class="radio-item" type="radio" id="no-${question?.question_id}" name="${question?.question_id}" value="No">
+            <label class="radio-item" for="no-${question?.question_id}">No</label>`
+          );
+          divWrapper.appendChild(labelMain);
+          divWrapper.appendChild(divButtons);
+          field.appendChild(divWrapper);
+        } else if (question?.question_type === "multiple-selection") {
+          //create element and add inner html to that element
+          let fieldset = document.createElement("fieldset");
+          fieldset.classList.add("mt-3", "form__field", "field_wrapper");
+          let legend = document.createElement("legend");
+          legend.innerHTML = `${question?.question_text}`;
+
+          question?.options?.map((option) => {
+            //create element
+            let label = document.createElement("label");
+            let span = document.createElement("span");
+            let input = document.createElement("input");
+
+            //setting attributes to the elements
+            span.innerHTML = `${option}`;
+            label.classList.add("form__choice-wrapper");
+            input.setAttribute("type", "checkbox");
+            input.setAttribute("name", `${option}`);
+            input.setAttribute("value", `${option}`);
+
+            //append child elements to the parents
+            label.appendChild(input);
+            label.appendChild(span);
+            fieldset.appendChild(legend);
+            fieldset.appendChild(label);
+          });
+          field.appendChild(fieldset);
+        } else if (question?.question_type === "text") {
+
+        } else if (question?.question_type === "textarea") {
 
         }
-
-        if(question?.question_type === "yes"){
-
+        else{
+          console.log("Something went wrong with Consultancy");
         }
-        else if(question?.question_type === "no"){
-
-        }
-        else if(question?.question_type === "yes-no"){
-
-        }
-        else if(question?.question_type === "multiple-selection"){
-
-        }
-        //add inner html to the elements
-        span.innerHTML = `${question?.question_text}`;
-        label.innerHTML = `Question type: ${question?.question_type}`;
-
-        //add classes to the elements
-        section.classList.add("field-wrapper");
-        div.classList.add("mt-3", "form__field");
-        label.classList.add("field__label");
-        label.classList.add("form__choice-wrapper");
-        input.classList.add("field__input");
-
-        //setting attributes to the elements
-        label.setAttribute("for", question?.question_id);
-        input.setAttribute("name", question?.question_id);
-        input.setAttribute("type", "text");
-        input.setAttribute("type", "radio");
-        input.setAttribute("type", "checkbox");
-        input.setAttribute(
-          "placeholder",
-          `Question type: ${question?.question_type}`
-        );
-
-        //append child elements to the parents
-        div.appendChild(label);
-        div.appendChild(input);
-        div.appendChild(span);
-        section.appendChild(div);
-        field.appendChild(section);
       });
     } else {
       console.log("Something went wrong with TIP API");

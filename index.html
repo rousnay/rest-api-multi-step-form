@@ -41,7 +41,20 @@
     <!-- Step 1 -->
     <section class="pop-in" id="progress-form__panel-1" role="tabpanel" aria-labelledby="progress-form__tab-1" tabindex="0">
 
-      <div class="mt-3 form__field">
+      <div class="mt-3 form__field field_wrapper">
+        <label>Yes
+          How would you rate your level of satisfaction with the service you received?
+          <span data-required="true" aria-hidden="true"></span>
+        </label>
+          <div class="radio-buttons">
+            <input class="radio-item" type="radio" id="yes" name="fav_language" value="Yes">
+            <label class="radio-item" for="yes">Yes</label>
+            <input class="radio-item" type="radio" id="no" name="fav_language" value="No">
+            <label class="radio-item" for="no">No</label>
+          </div>
+      </div>
+
+            <!-- <div class="mt-3 form__field">
         <label for="phone-number">
           Phone number (optional)
           <span data-required="true" aria-hidden="true"></span>
@@ -61,6 +74,13 @@
         </select>
       </div>
 
+      <div class="mt-3 form__field">
+        <label for="product-feedback">
+          Do you have any additional feedback or comments about our products?
+        </label>
+        <textarea id="product-feedback" name="product-feedback" rows="5"></textarea>
+      </div>
+
       <fieldset id="product-purchase" class="mt-3 form__field">
         <legend>
           Which of the following products have you purchased in the past 6 months? Please check all that apply.
@@ -77,14 +97,7 @@
           <input type="checkbox" name="product-purchase" value="C">
           <span>Product C</span>
         </label>
-      </fieldset>
-
-      <div class="mt-3 form__field">
-        <label for="product-feedback">
-          Do you have any additional feedback or comments about our products?
-        </label>
-        <textarea id="product-feedback" name="product-feedback" rows="5"></textarea>
-      </div>
+      </fieldset> -->
 
       <div class="mt-1 form__field">
         <label class="form__choice-wrapper">
