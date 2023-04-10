@@ -3361,8 +3361,11 @@ body {
   height: 80%;
 }
 
-button.button-next {
+button {
   background-color: #583223;
+}
+button:hover, button:focus {
+  background-color:  #702b0f;
 }
 
 input[type="radio"]:checked,
