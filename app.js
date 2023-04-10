@@ -165,6 +165,10 @@ function startConsultancy() {
         section.setAttribute("aria-labelledby", `progress-form__tab-${i + 1}`);
         section.setAttribute("tabindex", i);
 
+        if (i !== 0) {
+          section.hidden = true;
+        }
+
         tipFormTab.insertAdjacentHTML(
           "beforeend",
           `<button id="progress-form__tab-${
@@ -184,31 +188,28 @@ function startConsultancy() {
           question?.question_type === "no" ||
           question?.question_type === "yes-no"
         ) {
-          //create element
-          let divWrapper = document.createElement("div");
+          //create element and add inner html to that element
           let divButtons = document.createElement("div");
-          let labelMain = document.createElement("label");
-          let labelButtons = document.createElement("label");
-          let input = document.createElement("input");
-
-          divWrapper.classList.add("mt-3", "form__field", "field_wrapper");
-          labelMain.innerHTML = `${question?.question_text}`;
+          let fieldset = document.createElement("fieldset");
+          fieldset.classList.add("mt-3", "form__field", "field_wrapper");
+          let legend = document.createElement("legend");
+          legend.innerHTML = `${question?.question_text}`;
           divButtons.classList.add("radio-buttons");
-          labelButtons.classList.add("radio-item");
-          labelButtons.setAttribute("for", question?.question_id);
-          labelMain.insertAdjacentHTML(
+          legend.insertAdjacentHTML(
             "afterbegin",
             '<span data-required="true" aria-hidden="true"></span>'
           );
-          input.setAttribute("type", "radio");
-          input.classList.add("radio-item");
 
           divButtons.insertAdjacentHTML(
             "beforeend",
-            `<input class="radio-item" type="radio" id="yes-${question?.question_id}" name="${question?.question_id}" value="Yes">
-            <label class="radio-item" for="yes-${question?.question_id}">Yes</label>
-            <input class="radio-item" type="radio" id="no-${question?.question_id}" name="${question?.question_id}" value="No">
-            <label class="radio-item" for="no-${question?.question_id}">No</label>`
+            `<label class="form__choice-wrapper">
+            <input type="radio" name="${question?.question_id}" value="1">
+            <span>Yes</span>
+          </label>
+          <label class="form__choice-wrapper">
+            <input type="radio" name="${question?.question_id}" value="0">
+            <span>No</span>
+          </label>`
           );
 
           section.insertAdjacentHTML(
@@ -219,10 +220,9 @@ function startConsultancy() {
           </button>
         </div>`
           );
-
-          divWrapper.appendChild(labelMain);
-          divWrapper.appendChild(divButtons);
-          section.appendChild(divWrapper);
+          fieldset.appendChild(legend);
+          fieldset.appendChild(divButtons);
+          section.appendChild(fieldset);
           tipForm.appendChild(section);
         } else if (question?.question_type === "multiple-selection") {
           //create element and add inner html to that element

@@ -3240,7 +3240,7 @@ button:disabled {
 }
 
 .progress-form__tabs-item[aria-selected="true"]::before {
-  width: 50%;
+  width: 0%;
 }
 
 .progress-form__tabs-item[aria-selected="true"] > .step {
@@ -3306,9 +3306,10 @@ button:disabled {
 
 .radio-buttons {
   display: flex;
+  align-items: end;
 }
-.radio-item {
-  margin-right: 12px;
+.radio-buttons label {
+  margin-right: 20px;
 }
 
 label{
