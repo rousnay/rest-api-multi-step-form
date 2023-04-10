@@ -3350,7 +3350,7 @@ button.button-prev
   display: none;
 }
 
-button#submit {
+button {
   cursor: pointer;
 }
 

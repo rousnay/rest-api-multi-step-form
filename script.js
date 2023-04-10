@@ -539,7 +539,12 @@ ready(function () {
           // Update the progress bar (step complete)
           handleProgress(true);
           // Progress to the next step
-          activateTab(currentStep + 1);
+
+          if (currentStep !== tabItems.length - 1) {
+            activateTab(currentStep + 1);
+          }
+
+          console.log(currentStep);
         })
         .catch((invalidFields) => {
           // Update the progress bar (step incomplete)
