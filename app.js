@@ -202,7 +202,7 @@ function startConsultancy() {
           divButtons.insertAdjacentHTML(
             "beforeend",
             `<label class="form__choice-wrapper">
-            <input type="radio" name="${question?.question_id}" value="1" required>
+            <input type="radio" name="${question?.question_id}" value="1" >
             <span>Yes</span>
           </label>
           <label class="form__choice-wrapper">
@@ -323,6 +323,15 @@ function startConsultancy() {
           console.log("No field matches");
         }
       });
+
+      tipForm.insertAdjacentHTML(
+        "beforeend",
+        `<section id="progress-form__thank-you" hidden>
+        <p>Thank you for your submission!</p>
+        <p>We appreciate you contacting us. One of our team members will get back to you very&nbsp;soon.</p>
+      </section>`
+      );
+
       tipForm.insertAdjacentHTML(
         "beforeend",
         `<section id="progress-form__thank-you" hidden>

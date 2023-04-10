@@ -3346,3 +3346,31 @@ button.button-prev
     color: #127fbf;
 }
 
+.progress-form__tabs {
+  display: none;
+}
+
+button#submit {
+  cursor: pointer;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+button.button-next {
+  background-color: #583223;
+}
+
+input[type="radio"]:checked,
+[type="checkbox"]:checked {
+  background-color: #583223;
+}
+
+.button--simple:hover, .button--simple:focus {
+    background-color: transparent;
+    color: #583223;
+}
