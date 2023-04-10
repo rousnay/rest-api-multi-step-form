@@ -3310,3 +3310,10 @@ button:disabled {
 .radio-item {
   margin-right: 12px;
 }
+
+label{
+  font-weight: normal;
+}
+label.radio-item{
+  font-weight: 700;
+}

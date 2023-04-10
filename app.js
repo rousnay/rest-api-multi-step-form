@@ -143,6 +143,10 @@ const treatmentId = 6257;
 
 const tipForm = document.getElementById("progress-form");
 const field = document.createDocumentFragment();
+
+const tipFormTab = document.getElementById("progress-form-tabs");
+const theTab = document.createDocumentFragment();
+
 const opNotice1 =
   "Sorry, your answer indicates that this medicine may not be suitable for you to purchase online.";
 
@@ -153,8 +157,27 @@ function startConsultancy() {
   (async () => {
     if (questions) {
       console.log(questions);
-      questions.map(function (question) {
+      questions.map(function (question, i) {
         let section = document.createElement("section");
+        section.classList.add("pop-in");
+        section.setAttribute("id", `progress-form__panel-${i + 1}`);
+        section.setAttribute("role", "tabpanel");
+        section.setAttribute("aria-labelledby", `progress-form__tab-${i + 1}`);
+        section.setAttribute("tabindex", i);
+
+        tipFormTab.insertAdjacentHTML(
+          "beforeend",
+          `<button id="progress-form__tab-${
+            i + 1
+          }" class="flex-1 px-0 pt-2 progress-form__tabs-item" type="button" role="tab" aria-controls="progress-form__panel-${
+            i + 1
+          }" aria-selected="true">
+          <span class="d-block step" aria-hidden="true">Step ${
+            i + 1
+          } <span class="sm:d-none">of ${question.length}</span></span>
+          Details
+          </button>`
+        );
 
         if (
           question?.question_type === "yes" ||
@@ -189,7 +212,8 @@ function startConsultancy() {
           );
           divWrapper.appendChild(labelMain);
           divWrapper.appendChild(divButtons);
-          field.appendChild(divWrapper);
+          section.appendChild(divWrapper);
+          tipForm.appendChild(section);
         } else if (question?.question_type === "multiple-selection") {
           //create element and add inner html to that element
           let fieldset = document.createElement("fieldset");
@@ -216,13 +240,11 @@ function startConsultancy() {
             fieldset.appendChild(legend);
             fieldset.appendChild(label);
           });
-          field.appendChild(fieldset);
+          section.appendChild(fieldset);
+          tipForm.appendChild(section);
         } else if (question?.question_type === "text") {
-
         } else if (question?.question_type === "textarea") {
-
-        }
-        else{
+        } else {
           console.log("Something went wrong with Consultancy");
         }
       });
@@ -230,7 +252,7 @@ function startConsultancy() {
       console.log("Something went wrong with TIP API");
       console.log(response);
     }
-    tipForm.appendChild(field);
+    // tipForm.appendChild(field);
   })();
 }
 
