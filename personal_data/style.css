@@ -3240,7 +3240,7 @@ button:disabled {
 }
 
 .progress-form__tabs-item[aria-selected="true"]::before {
-  width: 0%;
+  width: 50%;
 }
 
 .progress-form__tabs-item[aria-selected="true"] > .step {
@@ -3269,81 +3269,6 @@ button:disabled {
   color: hsl(var(--light-blue-500));
 }
 
-
-/* added by Rousnay */
-.rotate{
-  animation:rotate .6s linear infinite
-}
-@keyframes rotate{
-  0%{transform:rotate(0deg)}
-  to{transform:rotate(1turn)}
-}
-.fade-in{
-  animation:fade-in .8s ease-in
-}
-@keyframes fade-in{
-  0%{visibility:hidden;opacity:0}
-  to{visibility:visible;opacity:1}
-}
-.fade-out{
-  animation:fade-out .8s ease-out
-}
-@keyframes fade-out{
-  0%{visibility:visible;opacity:1}
-  to{visibility:hidden;opacity:0}
-}
-.pop-in{
-  animation:pop-in .4s ease-out
-}
-@keyframes pop-in{
-  0%{transform:translateY(20px) scale(.8);
-    opacity:0
-  }
-  to{transform:translateY(0) scale(1);
-    opacity:1
-  }
-}
-
-.radio-buttons {
-  display: flex;
-  align-items: end;
-}
-.radio-buttons label {
-  margin-right: 20px;
-}
-label,legend{
-  font-weight: normal;
-}
-label p, legend p {
-  margin-top: 0;
-}
-
-.form__choice-wrapper span {
-  font-weight: bold;
-}
-
-label.radio-item{
-  font-weight: 700;
-}
-
-span.required-mark{
-  font-weight: bold;
-  position: absolute;
-  left: -12px;
-  top: 0;
-}
-.progress-form__tabs-item {
-  cursor: pointer;
-}
-.progress-form__tabs-item:hover span.d-block.step {
-    font-weight: 700;
-    color: #127fbf;
-}
-
-.progress-form__tabs {
-  display: none;
-}
-
 button {
   cursor: pointer;
 }
@@ -3355,6 +3280,9 @@ body {
   height: 80%;
 }
 
+.progress-form__tabs-item:before{
+  background-color: #583223;
+}
 button {
   background-color: #583223;
 }

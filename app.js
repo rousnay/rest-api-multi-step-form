@@ -327,16 +327,8 @@ function startConsultancy() {
       tipForm.insertAdjacentHTML(
         "beforeend",
         `<section id="progress-form__thank-you" hidden>
-        <p>Thank you for your submission!</p>
-        <p>We appreciate you contacting us. One of our team members will get back to you very&nbsp;soon.</p>
-      </section>`
-      );
-
-      tipForm.insertAdjacentHTML(
-        "beforeend",
-        `<section id="progress-form__thank-you" hidden>
-        <p>Thank you for your submission!</p>
-        <p>We appreciate you contacting us. One of our team members will get back to you very&nbsp;soon.</p>
+        <p>Consultancy data has been submitted successfully!</p>
+        <p>Next, you are going to tell us more about your personal and medical condition.</p>
       </section>`
       );
     } else {

@@ -1,4 +1,5 @@
 console.clear();
+
 function ready(fn) {
   if (
     document.readyState === "complete" ||
@@ -197,6 +198,8 @@ ready(function () {
     switch (field.type) {
       case "text":
       case "textarea":
+      case "date":
+      case "number":
         return validateText(field);
       case "select-one":
         return validateSelect(field);
@@ -210,6 +213,7 @@ ready(function () {
       case "email":
         return validateEmail(field);
       default:
+        // console.log("Nop nop");
         throw new Error(
           `The provided field type '${field.tagName}:${field.type}' is not supported in this form.`
         );
@@ -538,33 +542,14 @@ ready(function () {
         .then(() => {
           // Update the progress bar (step complete)
           handleProgress(true);
-          // Progress to the next step
-
-          if (currentStep !== tabItems.length - 1) {
-            activateTab(currentStep + 1);
-          }
-
-          console.log(currentStep);
         })
-        .catch((invalidFields) => {
+        .catch(() => {
           // Update the progress bar (step incomplete)
           handleProgress(false);
-          // Show errors for any invalid fields
-          invalidFields.forEach((field) => {
-            reportValidity(field);
-          });
-
-          // Focus the first found invalid field for the user
-          invalidFields[0].focus();
         });
 
       // Display or remove any error messages
       reportValidity(target);
-
-      if (target.matches('[data-action="prev"]')) {
-        // Revisit the previous step
-        activateTab(currentStep - 1);
-      }
     })
   );
 
@@ -670,11 +655,6 @@ ready(function () {
 
     // Logging the response from httpbin for quick verification
     console.log(response);
-
-    window.setTimeout(function () {
-      // Move to a new location or you can do something else
-      window.location.replace("/personal_data/");
-    }, 3000);
   }
 
   /****************************************************************************/
