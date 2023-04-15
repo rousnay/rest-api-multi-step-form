@@ -232,7 +232,7 @@ function startConsultancy() {
             section.insertAdjacentHTML(
               "beforeend",
               `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
-            <button class="button-next" type="button" data-action="next">
+            <button class="button-next button-progress" type="button" data-action="next">
               Continue
             </button>
           </div>`
