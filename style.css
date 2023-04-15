@@ -3306,12 +3306,47 @@ button:disabled {
 
 /* custom css */
 
+@font-face {
+  font-family: 'Mak';
+  src: url(//cdn.shopify.com/s/files/1/0689/0215/8644/files/Mak-Bold.eot?v=17941059008086958540);
+  src: url(//cdn.shopify.com/s/files/1/0689/0215/8644/files/Mak-Bold.eot?%23iefix&727) format('embedded-opentype'),
+      url(//cdn.shopify.com/s/files/1/0689/0215/8644/files/Mak-Bold.woff2?v=14588553796505663747) format('woff2'),
+      url(//cdn.shopify.com/s/files/1/0689/0215/8644/files/Mak-Bold.woff?v=7013477046752323177) format('woff'),
+      url(//cdn.shopify.com/s/files/1/0689/0215/8644/files/Mak-Bold.ttf?v=8679741593174555134) format('truetype'),
+      url(//cdn.shopify.com/s/files/1/0689/0215/8644/files/Mak-Bold.svg%23Mak-Bold?727) format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 
 body {
-  display: flex;
+  margin: 0;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 80%; */
+}
+
+section.consultancy-header {
+  text-align: center;
+  max-width: 800px;
+  padding: 30px 30px 0;
+  margin: 0 auto;
+  color: #4d2c1e;
+}
+
+section.consultancy-header h4 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+section.consultancy-header h1 {
+  font-family: Mak;
+  margin: 10px 0;
+}
+
+section.consultancy-header p {
+  margin: 0;
 }
 
 #progress-form {
@@ -3334,6 +3369,10 @@ section {
   text-align: left;
 }
 
+#progress-form ul li {
+  list-style: disc;
+}
+
 .form__choice-wrapper span {
   font-weight: bold;
 }
@@ -3353,6 +3392,7 @@ fieldset .form__choice-wrapper {
 .radio-buttons label {
   background-color: white;
   padding: 15px 20px;
+  cursor: pointer;
 }
 
 .check-boxes{
@@ -3365,6 +3405,12 @@ fieldset .form__choice-wrapper {
 .check-boxes label {
   background-color: white;
   padding: 15px 20px;
+  cursor: pointer;
+}
+
+legend p {
+    font-weight: 700;
+    font-size: 22px;
 }
 
 label,legend{
