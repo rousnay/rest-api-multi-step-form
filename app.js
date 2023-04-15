@@ -206,10 +206,10 @@ function startConsultancy() {
           let legend = document.createElement("legend");
           legend.innerHTML = `${question?.question_text}`;
           divButtons.classList.add("radio-buttons");
-          legend.insertAdjacentHTML(
-            "afterbegin",
-            '<span class="required-mark" data-required="true" aria-hidden="true"></span>'
-          );
+          // legend.insertAdjacentHTML(
+          //   "afterbegin",
+          //   '<span class="required-mark" data-required="true" aria-hidden="true"></span>'
+          // );
           // ;input.setAttribute("data-input-type", ${option});
 
           divButtons.insertAdjacentHTML(
@@ -231,7 +231,7 @@ function startConsultancy() {
           if (i === 0) {
             section.insertAdjacentHTML(
               "beforeend",
-              `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+              `<div class="button-wrapper d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
             <button class="button-next button-progress" type="button" data-action="next">
               Continue
             </button>
@@ -240,7 +240,7 @@ function startConsultancy() {
           } else if (i === questions.length - 1) {
             section.insertAdjacentHTML(
               "beforeend",
-              `<div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+              `<div class="button-wrapper d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
                 <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
                   Back
                 </button>
@@ -252,7 +252,7 @@ function startConsultancy() {
           } else {
             section.insertAdjacentHTML(
               "beforeend",
-              `<div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+              `<div class="button-wrapper d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
               <button type="button" class="mt-1 sm:mt-0 button--simple button-prev" data-action="prev">
                 Back
               </button>
@@ -266,9 +266,11 @@ function startConsultancy() {
           tipForm.appendChild(section);
         } else if (question?.question_type === "multiple-selection") {
           //create element and add inner html to that element
+          let divCheckboxes = document.createElement("div");
           let fieldset = document.createElement("fieldset");
           fieldset.classList.add("mt-3", "form__field", "field_wrapper");
           fieldset.setAttribute("data-question-type", "multiple-selection");
+          divCheckboxes.classList.add("check-boxes");
           let legend = document.createElement("legend");
           legend.innerHTML = `${question?.question_text}`;
           question?.options?.map((option) => {
@@ -286,8 +288,10 @@ function startConsultancy() {
             //append child elements to the parents
             label.appendChild(input);
             label.appendChild(span);
+            divCheckboxes.appendChild(label);
             fieldset.appendChild(legend);
-            fieldset.appendChild(label);
+            fieldset.appendChild(divCheckboxes);
+            // fieldset.appendChild(label);
           });
 
           section.appendChild(fieldset);
@@ -295,7 +299,7 @@ function startConsultancy() {
           if (i === 0) {
             section.insertAdjacentHTML(
               "beforeend",
-              `<div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+              `<div class="button-wrapper d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
             <button class="next-button" type="button" data-action="next">
               Continue
             </button>
@@ -304,7 +308,7 @@ function startConsultancy() {
           } else if (i === questions.length - 1) {
             section.insertAdjacentHTML(
               "beforeend",
-              `<div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+              `<div class="button-wrapper d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
                 <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
                   Back
                 </button>
@@ -316,7 +320,7 @@ function startConsultancy() {
           } else {
             section.insertAdjacentHTML(
               "beforeend",
-              `<div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+              `<div class="button-wrapper d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
               <button type="button" class="mt-1 sm:mt-0 button--simple button-prev" data-action="prev">
                 Back
               </button>

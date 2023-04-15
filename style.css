@@ -3304,22 +3304,74 @@ button:disabled {
   }
 }
 
+/* custom css */
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+#progress-form {
+  box-shadow: none;
+  background-color: initial;
+  width: 100%;
+  max-width: 650px;
+  margin-left: auto;
+    margin-right: auto;
+}
+section {
+
+}
+
+#progress-form legend {
+    text-align: center;
+}
+
+#progress-form legend ul {
+  text-align: left;
+}
+
+.form__choice-wrapper span {
+  font-weight: bold;
+}
+
+fieldset .form__choice-wrapper {
+  background-color: white;
+  padding: 15px 20px;
+}
+
 .radio-buttons {
   display: flex;
-  align-items: end;
+  flex-direction: column;
+  max-width: 350px;
+  margin: 15px auto;
 }
+
 .radio-buttons label {
-  margin-right: 20px;
+  background-color: white;
+  padding: 15px 20px;
 }
+
+.check-boxes{
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  margin: 15px auto;
+}
+
+.check-boxes label {
+  background-color: white;
+  padding: 15px 20px;
+}
+
 label,legend{
   font-weight: normal;
 }
 label p, legend p {
   margin-top: 0;
-}
-
-.form__choice-wrapper span {
-  font-weight: bold;
 }
 
 label.radio-item{
@@ -3331,6 +3383,17 @@ span.required-mark{
   position: absolute;
   left: -12px;
   top: 0;
+}
+
+input[type="radio"]:checked,
+[type="checkbox"]:checked {
+  background-color: #583223;
+}
+
+#progress-form .form__error-text {
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
 }
 .progress-form__tabs-item {
   cursor: pointer;
@@ -3344,29 +3407,19 @@ span.required-mark{
   display: none;
 }
 
-button {
-  cursor: pointer;
-}
-
-body {
+.button-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 80%;
+  margin-top: 25px;
 }
 
 button {
+  cursor: pointer;
   background-color: #583223;
 }
 button:hover, button:focus {
   background-color:  #702b0f;
 }
-
-input[type="radio"]:checked,
-[type="checkbox"]:checked {
-  background-color: #583223;
-}
-
 .button--simple:hover, .button--simple:focus {
     background-color: transparent;
     color: #583223;
