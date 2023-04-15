@@ -198,15 +198,20 @@ function startConsultancy() {
             "afterbegin",
             '<span class="required-mark" data-required="true" aria-hidden="true"></span>'
           );
+          // ;input.setAttribute("data-input-type", ${option});
 
           divButtons.insertAdjacentHTML(
             "beforeend",
             `<label class="form__choice-wrapper">
-            <input type="radio" name="${question?.question_id}" value="1" >
+            <input data-input-type="${
+              question?.question_type
+            }" type="radio" name="${question?.question_id}" value="1" required>
             <span>Yes</span>
           </label>
           <label class="form__choice-wrapper">
-            <input type="radio" name="${question?.question_id}" value="0">
+            <input data-input-type="${
+              question?.question_type === "no" ? "no" : "yes-no"
+            }" type="radio" name="${question?.question_id}" value="0">
             <span>No</span>
           </label>`
           );

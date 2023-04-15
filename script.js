@@ -110,7 +110,8 @@ ready(function () {
       isChecked = false;
 
     for (const choice of choices) {
-      if (choice.required) {
+      // console.log(choice.type === "checkbox");
+      if (choice.required || choice.type === "checkbox") {
         isRequired = true;
       }
 
