@@ -3419,6 +3419,7 @@ fieldset .form__choice-wrapper {
 legend p {
     font-weight: 700;
     font-size: 20px;
+    color: #4d2c1e;
 }
 
 label,legend{
