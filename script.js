@@ -692,7 +692,8 @@ const initProcessForm = function () {
 
     window.setTimeout(function () {
       // Move to a new location or you can do something else
-      window.location.replace("/personal_data/");
+      // window.location.replace("/personal_data/");
+      console.log("#sec passed!");
     }, 3000);
   }
 

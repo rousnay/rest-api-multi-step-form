@@ -3327,29 +3327,33 @@ body {
   height: 80%; */
 }
 
-section.consultancy-header {
+.page-container{
+  margin-top: 30px;
+}
+
+#consultancy-header {
   text-align: center;
   max-width: 800px;
   padding: 30px 30px 0;
-  margin: 0 auto;
+
   color: #4d2c1e;
 }
 
-section.consultancy-header h4 {
+#consultancy-header h4 {
   margin: 0;
   text-transform: uppercase;
 }
 
-section.consultancy-header h1 {
+#consultancy-header h1 {
   font-family: Mak;
   margin: 10px 0;
 }
 
-section.consultancy-header p {
+#consultancy-header p {
   margin: 0;
 }
 
-button#start-consultancy {
+#start-consultancy {
   margin-top: 80px;
 }
 
@@ -3414,7 +3418,7 @@ fieldset .form__choice-wrapper {
 
 legend p {
     font-weight: 700;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 label,legend{
@@ -3473,4 +3477,16 @@ button:hover, button:focus {
 .button--simple:hover, .button--simple:focus {
     background-color: transparent;
     color: #583223;
+}
+
+#progress-form__thank-you{
+  text-align: center;
+}
+
+section#progress-form__thank-you button {
+  margin-top: 30px;
+}
+
+#progress-form__thank-you .successful-submit{
+  color: #4d2c1e;
 }

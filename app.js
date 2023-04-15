@@ -155,6 +155,7 @@ function ready(fn) {
 }
 
 ready(function () {
+  const consultancyHeader = document.getElementById("consultancy-header");
   const startConsultancy = document.getElementById("start-consultancy");
   const tipForm = document.getElementById("progress-form");
   const tipFormTab = document.getElementById("progress-form-tabs");
@@ -169,7 +170,7 @@ ready(function () {
   startConsultancy.addEventListener("click", (e) => {
     (async () => {
       if (questions) {
-        startConsultancy.style.display = "none";
+        consultancyHeader.style.display = "none";
         console.log(questions);
         questions.map(function (question, i) {
           let section = document.createElement("section");
@@ -364,10 +365,21 @@ ready(function () {
         tipForm.insertAdjacentHTML(
           "beforeend",
           `<section id="progress-form__thank-you" hidden>
-            <p>Consultancy data has been submitted successfully!</p>
+            <p class="successful-submit">Consultancy data has been submitted successfully!</p>
             <p>Next, you are going to tell us more about your personal and medical condition.</p>
+            <button type="button" id="continue-to-next-form">Continue</button>
           </section>`
         );
+
+        const continueToNextForm = document.getElementById(
+          "continue-to-next-form"
+        );
+
+        continueToNextForm.addEventListener("click", (e) => {
+          // window.location.replace("/personal_data/");
+          window.location.href = "/personal_data/";
+        });
+
         initProcessForm();
       } else {
         console.log("Something went wrong with TIP API");
