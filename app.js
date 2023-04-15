@@ -147,11 +147,11 @@ const field = document.createDocumentFragment();
 const tipFormTab = document.getElementById("progress-form-tabs");
 const theTab = document.createDocumentFragment();
 
-const opNotice1 =
-  "Sorry, your answer indicates that this medicine may not be suitable for you to purchase online.";
+const errorMessage =
+  "Unfortunately, based on your responses we cannot provide your treatment!";
 
-const opNotice2 =
-  "Unfortunately, based on your responses we cannot provide your treatment";
+const helperText =
+  "If you have not had your condition diagnosed by your doctor, it is important to have regular check-ups with your GP as ED can be a symptom of other medical conditions. You don’t need to discuss your ED with your GP if you don’t want but it’s important to have a blood pressure check and blood tests yearly to monitor your overall health.";
 
 function startConsultancy() {
   (async () => {
@@ -191,6 +191,18 @@ function startConsultancy() {
           let divButtons = document.createElement("div");
           let fieldset = document.createElement("fieldset");
           fieldset.classList.add("mt-3", "form__field", "field_wrapper");
+          fieldset.setAttribute("data-question-type", question?.question_type);
+
+          fieldset.setAttribute(
+            "data-helper-text",
+            question?.helper_text || helperText
+          );
+
+          fieldset.setAttribute(
+            "data-error-message",
+            question?.error_message || errorMessage
+          );
+
           let legend = document.createElement("legend");
           legend.innerHTML = `${question?.question_text}`;
           divButtons.classList.add("radio-buttons");
@@ -203,15 +215,11 @@ function startConsultancy() {
           divButtons.insertAdjacentHTML(
             "beforeend",
             `<label class="form__choice-wrapper">
-            <input data-input-type="${
-              question?.question_type
-            }" type="radio" name="${question?.question_id}" value="1" required>
+            <input data-input-type="yes" type="radio" name="${question?.question_id}" value="1" required>
             <span>Yes</span>
           </label>
           <label class="form__choice-wrapper">
-            <input data-input-type="${
-              question?.question_type === "no" ? "no" : "yes-no"
-            }" type="radio" name="${question?.question_id}" value="0">
+            <input data-input-type="no" type="radio" name="${question?.question_id}" value="0">
             <span>No</span>
           </label>`
           );
@@ -236,7 +244,7 @@ function startConsultancy() {
                 <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
                   Back
                 </button>
-                <button type="submit">
+                <button  class="button-progress" type="submit">
                   Submit
                 </button>
               </div>`
@@ -248,7 +256,7 @@ function startConsultancy() {
               <button type="button" class="mt-1 sm:mt-0 button--simple button-prev" data-action="prev">
                 Back
               </button>
-              <button class="button-next" type="button" data-action="next">
+              <button class="button-next button-progress" type="button" data-action="next">
               Continue
             </button>
           </div>`
@@ -260,9 +268,9 @@ function startConsultancy() {
           //create element and add inner html to that element
           let fieldset = document.createElement("fieldset");
           fieldset.classList.add("mt-3", "form__field", "field_wrapper");
+          fieldset.setAttribute("data-question-type", "multiple-selection");
           let legend = document.createElement("legend");
           legend.innerHTML = `${question?.question_text}`;
-
           question?.options?.map((option) => {
             //create element
             let label = document.createElement("label");
@@ -300,7 +308,7 @@ function startConsultancy() {
                 <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
                   Back
                 </button>
-                <button type="submit">
+                <button class="button-progress" type="submit">
                   Submit
                 </button>
               </div>`
@@ -312,7 +320,7 @@ function startConsultancy() {
               <button type="button" class="mt-1 sm:mt-0 button--simple button-prev" data-action="prev">
                 Back
               </button>
-              <button class="button-next" type="button" data-action="next">
+              <button class="button-next button-progress" type="button" data-action="next">
               Continue
             </button>
           </div>`

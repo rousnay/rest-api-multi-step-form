@@ -116,7 +116,30 @@ ready(function () {
       }
 
       if (choice.checked) {
-        isChecked = true;
+        let questionType = fieldset.getAttribute("data-question-type");
+        let inputType = choice.getAttribute("data-input-type");
+        let helperText = fieldset.getAttribute("data-helper-text");
+        let errorMessage = fieldset.getAttribute("data-error-message");
+
+        if (questionType === "yes-no" && inputType === "no") {
+          console.log("sdf", inputType);
+          return {
+            isValid: true, // NEED TO WORK
+            message: helperText,
+          };
+        } else if (
+          choice.type === "radio" &&
+          inputType !== questionType &&
+          questionType !== "yes-no"
+        ) {
+          console.log(questionType);
+          console.log(inputType);
+          isChecked = false;
+          return {
+            isValid: false,
+            message: errorMessage,
+          };
+        } else isChecked = true;
       }
     }
 
@@ -268,11 +291,16 @@ ready(function () {
       '[type="radio"], [type="checkbox"]'
     );
 
+    const theButton = fieldset.closest("section").querySelector(".button-progress");
+    console.log(theButton);
+
     for (const choice of choices) {
       if (status) {
+        theButton.disabled = true;
         choice.setAttribute("aria-invalid", "true");
         choice.setAttribute("aria-describedby", errorId);
       } else {
+        theButton.disabled = false;
         choice.removeAttribute("aria-invalid");
         choice.removeAttribute("aria-describedby");
       }
