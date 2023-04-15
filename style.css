@@ -3349,6 +3349,10 @@ section.consultancy-header p {
   margin: 0;
 }
 
+button#start-consultancy {
+  margin-top: 80px;
+}
+
 #progress-form {
   box-shadow: none;
   background-color: initial;

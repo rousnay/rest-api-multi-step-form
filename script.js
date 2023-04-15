@@ -1,17 +1,5 @@
-console.clear();
-function ready(fn) {
-  if (
-    document.readyState === "complete" ||
-    document.readyState === "interactive"
-  ) {
-    setTimeout(fn, 1);
-    document.removeEventListener("DOMContentLoaded", fn);
-  } else {
-    document.addEventListener("DOMContentLoaded", fn);
-  }
-}
-
-ready(function () {
+const initProcessForm = function () {
+  console.log("Called");
   // Global Constants
 
   const progressForm = document.getElementById("progress-form");
@@ -122,7 +110,6 @@ ready(function () {
         let errorMessage = fieldset.getAttribute("data-error-message");
 
         if (questionType === "yes-no" && inputType === "no") {
-          console.log("sdf", inputType);
           return {
             isValid: true, // NEED TO WORK
             message: helperText,
@@ -132,8 +119,6 @@ ready(function () {
           inputType !== questionType &&
           questionType !== "yes-no"
         ) {
-          console.log(questionType);
-          console.log(inputType);
           isChecked = false;
           return {
             isValid: false,
@@ -291,8 +276,9 @@ ready(function () {
       '[type="radio"], [type="checkbox"]'
     );
 
-    const theButton = fieldset.closest("section").querySelector(".button-progress");
-    console.log(theButton);
+    const theButton = fieldset
+      .closest("section")
+      .querySelector(".button-progress");
 
     for (const choice of choices) {
       if (status) {
@@ -503,6 +489,12 @@ ready(function () {
    */
 
   // Immediately attach event listeners to the first tab (happens only once)
+
+  function initTabs() {
+    tabItems[0].addEventListener("click", clickTab);
+    tabItems[0].addEventListener("keydown", arrowTab);
+  }
+
   tabItems[0].addEventListener("click", clickTab);
   tabItems[0].addEventListener("keydown", arrowTab);
 
@@ -572,8 +564,6 @@ ready(function () {
           if (currentStep !== tabItems.length - 1) {
             activateTab(currentStep + 1);
           }
-
-          console.log(currentStep);
         })
         .catch((invalidFields) => {
           // Update the progress bar (step incomplete)
@@ -791,4 +781,4 @@ ready(function () {
         invalidFields[0].focus();
       });
   });
-});
+};
